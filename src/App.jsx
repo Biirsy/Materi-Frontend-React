@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ProjectCard from "./components/projects";
-import "./App.css";
 import SocialButton from "./components/socialbutton";
+import ContactForm from "./components/contactform";
+import "./App.css";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -28,6 +29,24 @@ function App() {
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
   };
+
+  const projectList = [
+    {
+      title: "To do App",
+      description: "A simple to do list with CRUD functionality.",
+      link: "https://github.com/",
+    },
+    {
+      title: "Nada Nusantara",
+      description: "A simple to do list with CRUD functionality.",
+      link: "https://github.com/",
+    },
+    {
+      title: "Library",
+      description: "A simple to do list with CRUD functionality.",
+      link: "https://github.com/",
+    },
+  ];
 
   return (
     <Router>
@@ -87,24 +106,19 @@ function App() {
             path="/projects"
             element={
               <div className="grid gap-4 w-full max-w-md mx-auto ">
-                <ProjectCard
-                  title="To do App"
-                  description="A simple to do list with CRUD functionality."
-                  link="https://github.com/"
-                />
-                <ProjectCard
-                  title="Nada Nusantara"
-                  description="A simple todo list with CRUD functionality."
-                  link="https://github.com/"
-                />
-                <ProjectCard
-                  title="Library"
-                  description="A simple todo list with CRUD functionality."
-                  link="https://github.com/"
-                />
+                {projectList.map((item) => {
+                  return (
+                    <ProjectCard
+                      title={item.title}
+                      description={item.description}
+                      link={item.link}
+                    />
+                  );
+                })}
               </div>
             }
           />
+          <Route path="/contact" element={<ContactForm />} />
         </Routes>
         <button onClick={toggleTheme} className="btn btn-outline mt-4">
           Toggle {theme === "light" ? "Dark" : "Light"} Mode

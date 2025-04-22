@@ -1,4 +1,4 @@
-function SocialButton({ platform, url, buttonColor }) {
+const SocialButton = ({ platform, url, buttonColor }) => {
   return (
     <a
       className={`btn btn-${buttonColor} transition hover:scale-105`}
@@ -8,6 +8,6 @@ function SocialButton({ platform, url, buttonColor }) {
       {platform}
     </a>
   );
-}
+};
 
 export default SocialButton;
